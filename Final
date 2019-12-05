@@ -1,14 +1,15 @@
 pipeline {
-    //agent none
 	agent any
+	tools {
+        maven 'LocalMaven'
+	jdk 'LocalJDK8'
+    }
     stages {
 	
-	stage('Non-Parallel Stage') {
-	    /*agent {
-                        label "master"
-                }*/
+	stage('JOB01-GIT-MVN') {
         steps {
-                echo 'This stage will be executed first'
+		git 'https://github.com/SilvanoGil/Spring3MVC.git'
+               bat 'mvn clean test'
                 }
         }
 
@@ -20,7 +21,6 @@ pipeline {
                         label "mock"
                     }*/
                     steps {
-			sleep 10
                         echo "Task1 on Parallel"
                     }
                     
@@ -30,7 +30,6 @@ pipeline {
                         label "win"
                     }*/
                     steps {
-			    	sleep 10
 				echo "Task2 on Parallel"
 			}
                 }
