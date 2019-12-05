@@ -1,9 +1,10 @@
 pipeline {
 	agent any
 	tools {
-        maven 'LocalMaven'
-	jdk 'LocalJDK8'
-    }
+  	 	maven 'LocalMaven'
+		jdk 'LocalJDK8'
+    	}
+    	triggers { pollSCM('* * * * 1-5') }
     stages {
 	
 	stage('JOB01-GIT-MVN') {
