@@ -3,33 +3,33 @@ pipeline {
 	tools {
   	 	maven 'LocalMaven'
 		jdk 'LocalJDK8'
-    	}
-    	triggers { pollSCM('* * * * 1-5') }
+    }
+    triggers { 
+        pollSCM('* * * * 1-5') 
+    }
     stages {
 	
-	stage('JOB01-GIT-MVN') {
-        steps {
-		git 'https://github.com/SilvanoGil/Spring3MVC.git'
-               bat 'mvn clean test'
-                }
+    	stage('JOB01-GIT-MVN') {
+            steps {
+        		git 'https://github.com/SilvanoGil/Spring3MVC.git'
+                bat 'mvn clean test'
+            }
         }
-	stage('JOB02-GIT-MVN') {
-        steps {
-		git 'https://github.com/SilvanoGil/Spring3MVC.git'
-               bat 'mvn clean package'
-                }
+    	stage('JOB02-GIT-MVN') {
+            steps {
+        		git 'https://github.com/SilvanoGil/Spring3MVC.git'
+                bat 'mvn clean package'
+            }
         }
-	stage('JOB03-SONAR') {
-        steps {
-		//git 'https://github.com/SilvanoGil/Spring3MVC.git'
-               //bat 'mvn clean package'
-                }
+    	stage('JOB03-SONAR') {
+            steps {
+    		    echo "Hola caracola sonar"
+            }
         }
-	stage('JOB04-DEPLOY') {
-        steps {
-		//git 'https://github.com/SilvanoGil/Spring3MVC.git'
-               //bat 'mvn clean package'
-                }
+    	stage('JOB04-DEPLOY') {
+            steps {
+    		    echo "Hola caracola deploy"
+            }
         }
     }
 }
